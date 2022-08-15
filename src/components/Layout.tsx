@@ -4,7 +4,11 @@ import clsx from "clsx";
 import Footer from "./Footer";
 import Header from "./Header";
 
-const Layout = ({ children }) => {
+interface Props {
+  children?: React.ReactNode;
+}
+
+const Layout = ({ children }: Props): React.ReactElement => {
   return (
     <div
       className={clsx(

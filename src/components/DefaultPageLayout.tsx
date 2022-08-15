@@ -5,7 +5,11 @@ import clsx from "clsx";
 import Layout from "./Layout";
 import SEO from "./SEO";
 
-export const DefaultPageLayout = ({ children }) => {
+interface Props {
+  children?: React.ReactNode;
+}
+
+export const DefaultPageLayout = ({ children }: Props): React.ReactElement => {
   return (
     <Layout>
       <div className={clsx("my-3", "md:my-5")}>

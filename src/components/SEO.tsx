@@ -7,14 +7,14 @@ import appleTouchIcon from "../images/apple-touch-icon.png";
 import favicon16 from "../images/favicon-16x16.png";
 import favicon32 from "../images/favicon-32x32.png";
 
-export interface SEOProps {
+export interface Props {
   title?: string;
   article?: boolean;
   description?: string | null;
   image?: string;
 }
 
-const SEO = (props: SEOProps) => {
+const SEO = (props: Props): React.ReactElement => {
   const { article, title, description, image } = props;
   const { pathname } = useLocation();
 
