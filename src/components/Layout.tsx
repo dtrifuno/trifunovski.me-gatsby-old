@@ -18,12 +18,14 @@ const Layout = ({ children }) => {
           { title: "Posts", to: "/posts" },
         ]}
       />
+
       <main className={clsx("mb-auto")}>
         <div className={clsx("px-6")}>{children}</div>
       </main>
+
       <Footer />
     </div>
   );
 };
 
-export default Layout
+export default Layout;

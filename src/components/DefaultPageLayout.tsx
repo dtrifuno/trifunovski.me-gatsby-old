@@ -3,6 +3,7 @@ import { MDXProvider } from "@mdx-js/react";
 import clsx from "clsx";
 
 import Layout from "./Layout";
+import SEO from "./SEO";
 
 export const DefaultPageLayout = ({ children }) => {
   return (
@@ -11,10 +12,9 @@ export const DefaultPageLayout = ({ children }) => {
         <article
           className={clsx("mx-auto prose prose-primary prose-lg max-w-3xl")}
         >
-          <MDXProvider>{children}</MDXProvider>
+          <MDXProvider components={{ SEO }}>{children}</MDXProvider>
         </article>
       </div>
     </Layout>
   );
 };
-
