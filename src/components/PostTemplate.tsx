@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import Layout from "./Layout";
 import Date from "./Date";
 import clsx from "clsx";
+import { MDXProvider } from "@mdx-js/react";
 
 const PostTemplate = ({ data: { mdx }, children }: any): React.ReactElement => {
   return (
@@ -15,7 +16,7 @@ const PostTemplate = ({ data: { mdx }, children }: any): React.ReactElement => {
             <Date isoString={mdx.frontmatter.date} />
           </div>
           <h1>{mdx.frontmatter.title}</h1>
-          {children}
+          <MDXProvider>{children}</MDXProvider>
         </article>
       </div>
     </Layout>
