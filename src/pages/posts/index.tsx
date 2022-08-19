@@ -41,9 +41,8 @@ const BlogPosts = ({ data }: Props): React.ReactElement => {
 
   return (
     <Layout>
-      <SEO title="Posts" />
       <div className={clsx("my-3", "md:my-5")}>
-        <article className={clsx("mx-auto max-w-3xl")}>
+        <main className={clsx("mx-auto max-w-3xl")}>
           <ul className="list-none list-inside">
             {years.map((year) => (
               <li key={year} className="mt-5 mb-9">
@@ -63,7 +62,7 @@ const BlogPosts = ({ data }: Props): React.ReactElement => {
               </li>
             ))}
           </ul>
-        </article>
+        </main>
       </div>
     </Layout>
   );
@@ -95,3 +94,7 @@ export const query = graphql`
 `;
 
 export default BlogPosts;
+
+export const Head = ({ location }: any) => {
+  return <SEO title="Posts" pathname={location.pathname} />;
+};

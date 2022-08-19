@@ -21,6 +21,7 @@ export const useSiteMetadata = () => {
       site {
         siteMetadata {
           title
+          titleTemplate
           description
           twitterUsername
           image

@@ -6,6 +6,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { bibliographyComponents } from "./Bibliography";
 import Date from "./Date";
 import Layout from "./Layout";
+import SEO from "./SEO";
 
 const shortcodes = {
   ...bibliographyComponents,
@@ -14,7 +15,7 @@ const shortcodes = {
 const PostTemplate = ({ data: { mdx }, children }: any): React.ReactElement => {
   return (
     <Layout>
-      <div className={clsx("my-3 md:my-5")}>
+      <main className={clsx("my-3 md:my-5")}>
         <article
           className={clsx("mx-auto prose prose-primary prose-lg max-w-3xl")}
         >
@@ -24,7 +25,7 @@ const PostTemplate = ({ data: { mdx }, children }: any): React.ReactElement => {
           <h1>{mdx.frontmatter.title}</h1>
           <MDXProvider components={shortcodes}>{children}</MDXProvider>
         </article>
-      </div>
+      </main>
     </Layout>
   );
 };
@@ -35,9 +36,25 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date
+        draft
+        description
       }
     }
   }
 `;
+
+export const Head = ({ location, data: { mdx } }: any) => {
+  const { pathname } = location;
+  const { title, description, draft } = mdx.frontmatter;
+
+  return (
+    <SEO
+      title={`${draft ? "(DRAFT) " : ""}${title}`}
+      description={description}
+      pathname={pathname}
+      article
+    />
+  );
+};
 
 export default PostTemplate;

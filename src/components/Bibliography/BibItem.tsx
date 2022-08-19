@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 interface Props {
   label: string;
-  children: React.ReactElement;
+  children: React.ReactNode;
 }
 
 const BibItem = ({ label, children }: Props): React.ReactElement => {

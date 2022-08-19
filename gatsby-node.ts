@@ -1,6 +1,6 @@
+import path from "path";
 import { GatsbyNode } from "gatsby";
 import slugify from "@sindresorhus/slugify";
-import path from "path";
 
 export const onCreateNode: GatsbyNode["onCreateNode"] = ({
   node,
@@ -32,7 +32,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 }) => {
   const { createPage } = actions;
 
-  const result = await graphql(`
+  const result = (await graphql(`
     {
       allMdx(
         filter: {
@@ -49,8 +49,16 @@ export const createPages: GatsbyNode["createPages"] = async ({
           }
         }
       }
+      site {
+        siteMetadata {
+          titleTemplate
+          siteUrl
+        }
+      }
     }
-  `);
+  `)) as any;
+
+  const { siteUrl, titleTemplate } = result.data.site.siteMetadata;
 
   result.data.allMdx.nodes.forEach((node) => {
     createPage({
@@ -58,6 +66,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
       component: `${blogPostTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
       context: {
         id: node.id,
+        siteUrl,
+        titleTemplate,
       },
     });
   });
