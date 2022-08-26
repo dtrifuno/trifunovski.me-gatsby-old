@@ -5,7 +5,6 @@ interface SiteMetadataQuery {
     siteMetadata: {
       description: string;
       image: string;
-      siteLanguage: string;
       title: string;
       titleTemplate: string;
       authorName: string;

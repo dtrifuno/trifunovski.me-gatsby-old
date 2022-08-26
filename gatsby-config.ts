@@ -8,7 +8,6 @@ const config: GatsbyConfig = {
     image: ``,
     authorName: `Darko Trifunovski`,
     twitterUsername: `@dtrifuno`,
-    siteLanguage: `en`,
     siteUrl: `https://www.trifunovski.me`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.

@@ -24,7 +24,6 @@ const SEO = ({
     description: defaultDescription,
     siteUrl,
     image,
-    siteLanguage,
     twitterUsername,
   } = useSiteMetadata();
 
