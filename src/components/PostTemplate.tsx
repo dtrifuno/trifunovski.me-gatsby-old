@@ -38,6 +38,11 @@ export const pageQuery = graphql`
         date
         draft
         description
+        featuredImage {
+          childImageSharp {
+            gatsbyImageData(layout: FIXED, width: 1200)
+          }
+        }
       }
     }
   }
@@ -45,13 +50,14 @@ export const pageQuery = graphql`
 
 export const Head = ({ location, data: { mdx } }: any) => {
   const { pathname } = location;
-  const { title, description, draft } = mdx.frontmatter;
+  const { title, description, draft, featuredImage } = mdx.frontmatter;
 
   return (
     <SEO
       title={`${draft ? "[DRAFT] " : ""}${title}`}
       description={description}
       pathname={pathname}
+      featuredImage={featuredImage?.childImageSharp?.gatsbyImageData}
       article
     />
   );

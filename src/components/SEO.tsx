@@ -10,6 +10,7 @@ type Props = {
   description?: string;
   pathname?: string;
   article?: boolean;
+  featuredImage?: any; // FIXME
 };
 
 const SEO = ({
@@ -17,20 +18,23 @@ const SEO = ({
   description,
   pathname = "",
   article,
+  featuredImage,
 }: Props): React.ReactElement => {
   const {
     title: defaultTitle,
     titleTemplate,
     description: defaultDescription,
     siteUrl,
-    image,
     twitterUsername,
+    featuredImage: defaultImage,
   } = useSiteMetadata();
 
   const seo = {
+    twitterUsername,
     title: titleTemplate.replace("%s", title || defaultTitle),
     description: description || defaultDescription,
     url: `${siteUrl}${pathname}`,
+    image: `${siteUrl}${(featuredImage || defaultImage).images.fallback.src}`,
   };
 
   return (
@@ -43,8 +47,9 @@ const SEO = ({
       <meta property="og:description" content={seo.description} />
 
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content={twitterUsername} />
-      <meta name="twitter:creator" content={twitterUsername} />
+      <meta name="og:image" content={seo.image} />
+      <meta name="twitter:site" content={seo.twitterUsername} />
+      <meta name="twitter:creator" content={seo.twitterUsername} />
 
       <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} />
       <link rel="icon" type="image/png" sizes="32x32" href={favicon32} />

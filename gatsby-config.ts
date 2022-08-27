@@ -5,7 +5,6 @@ const config: GatsbyConfig = {
     title: `Home`,
     titleTemplate: `%s · Darko Trifunovski`,
     description: `Darko Trifunovski's personal website and blog`,
-    image: ``,
     authorName: `Darko Trifunovski`,
     twitterUsername: `@dtrifuno`,
     siteUrl: `https://www.trifunovski.me`,
@@ -16,6 +15,8 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -24,6 +25,10 @@ const config: GatsbyConfig = {
         path: "./src/pages/",
       },
       __key: "pages",
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: { name: "images", path: "./src/images" },
     },
     {
       resolve: `gatsby-source-filesystem`,
