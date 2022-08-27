@@ -49,7 +49,7 @@ export const Head = ({ location, data: { mdx } }: any) => {
 
   return (
     <SEO
-      title={`${draft ? "(DRAFT) " : ""}${title}`}
+      title={`${draft ? "[DRAFT] " : ""}${title}`}
       description={description}
       pathname={pathname}
       article

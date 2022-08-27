@@ -1,6 +1,22 @@
 import path from "path";
 import { GatsbyNode } from "gatsby";
 import slugify from "@sindresorhus/slugify";
+import { format as formatDate } from "date-fns";
+
+export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
+  ({ actions }) => {
+    const { createTypes } = actions;
+    const typeDefs = `
+      type Mdx implements Node {
+        frontmatter: Frontmatter
+      }
+      type Frontmatter {
+        draft: Boolean
+        date: Date! @dateformat
+      }
+    `;
+    createTypes(typeDefs);
+  };
 
 export const onCreateNode: GatsbyNode["onCreateNode"] = ({
   node,
@@ -15,10 +31,18 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
     const sourceName = parent!.sourceInstanceName;
 
     if (sourceName === `posts`) {
+      const { draft, title, date } = node.frontmatter as any;
+
+      const prefix = draft ? "/drafts/" : "/posts/";
+      const formattedDate = formatDate(date, "yyMMdd");
+      const slugifiedTitle = slugify(title);
+
+      const slug = `${prefix}${formattedDate}-${slugifiedTitle}`;
+
       createNodeField({
         node,
         name: `slug`,
-        value: `/posts/${slugify(node.frontmatter.title)}`,
+        value: slug,
       });
     }
   }

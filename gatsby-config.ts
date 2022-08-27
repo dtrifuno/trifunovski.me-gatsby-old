@@ -58,6 +58,18 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        excludes: [`/drafts/*`],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        policy: [{ userAgent: "*", disallow: ["/drafts/"] }],
+      },
+    },
   ],
 };
 
