@@ -2,11 +2,11 @@ import * as React from "react";
 import clsx from "clsx";
 import { Link } from "gatsby";
 
-interface HeaderProps {
+interface Props {
   links?: { title: string; to: string }[];
 }
 
-const Header: React.FC<HeaderProps> = ({ links = [] }) => {
+const Header = ({ links = [] }: Props): React.ReactElement => {
   return (
     <header className={clsx("border-b-2 border-primary-500 mb-1 px-3")}>
       {/* <div className={clsx("max-w-4xl mx-auto px-4 sm:px-8 lg:px-10")}> */}

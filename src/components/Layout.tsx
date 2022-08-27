@@ -4,7 +4,11 @@ import clsx from "clsx";
 import Footer from "./Footer";
 import Header from "./Header";
 
-const Layout = ({ children }) => {
+interface Props {
+  children?: React.ReactNode;
+}
+
+const Layout = ({ children }: Props): React.ReactElement => {
   return (
     <div
       className={clsx(
@@ -18,12 +22,14 @@ const Layout = ({ children }) => {
           { title: "Posts", to: "/posts" },
         ]}
       />
+
       <main className={clsx("mb-auto")}>
         <div className={clsx("px-6")}>{children}</div>
       </main>
+
       <Footer />
     </div>
   );
 };
 
-export default Layout
+export default Layout;

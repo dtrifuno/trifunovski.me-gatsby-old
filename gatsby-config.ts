@@ -2,43 +2,80 @@ import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `My Personal Website`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `Home`,
+    titleTemplate: `%s · Darko Trifunovski`,
+    description: `Darko Trifunovski's personal website and blog`,
+    authorName: `Darko Trifunovski`,
+    twitterUsername: `@dtrifuno`,
+    siteUrl: `https://www.trifunovski.me`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        "name": "pages",
-        "path": "./src/pages/"
+        name: "pages",
+        path: "./src/pages/",
       },
-      __key: "pages"
+      __key: "pages",
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: { name: "images", path: "./src/images" },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        "name": "posts",
-        "path": "./content/posts/"
+        name: "posts",
+        path: "./content/posts/",
       },
-      __key: "posts"
+      __key: "posts",
     },
     {
       resolve: "gatsby-plugin-mdx",
       options: {
-        // defaultLayouts: {
-        //   posts: require.resolve("./src/components/PostsLayout.tsx"),
-        // },
-        gatsbyRemarkPlugins: [{
-          resolve: `gatsby-remark-katex`,
-        },]
-      }
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
+          {
+            resolve: `gatsby-remark-katex`,
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: "language-",
+              inlineCodeMarker: null,
+              showLineNumbers: false,
+              noInlineHighlight: false,
+            },
+          },
+        ],
+      },
     },
-  ]
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        excludes: [`/drafts/*`],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        policy: [{ userAgent: "*", disallow: ["/drafts/"] }],
+      },
+    },
+  ],
 };
 
 export default config;

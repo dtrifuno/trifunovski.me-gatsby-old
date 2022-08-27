@@ -1,7 +1,5 @@
 export { DefaultPageLayout as default } from "../components/DefaultPageLayout.tsx";
 
-{/* <SEO /> */}
-
 ## Hi, my name is Darko.
 
 I am a software engineer from Skopje, Macedonia.
@@ -32,3 +30,6 @@ with **PyMC**.
 I am currently looking to transition to a full-time position. If you have a job
 opening for which you think I might be a good match, please feel
 free to [email me](mailto:dtrifuno@gmail.com).
+
+import SEO from "../components/SEO";
+export const Head = () => <SEO />;

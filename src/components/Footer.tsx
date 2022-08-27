@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import * as React from "react";
 
-const Footer: React.FC = () => {
+const Footer = (): React.ReactElement => {
   return (
     <footer className="text-center text-white mt-3 bt-2 border-t-2 border-primary-500">
       <div className="text-center text-gray-700 p-4">

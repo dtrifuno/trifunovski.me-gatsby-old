@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.citation a {
+  font-weight: 600!important;
+  text-decoration: none;
+  color: var(--tw-prose-body);
+}
